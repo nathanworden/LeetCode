@@ -15,14 +15,34 @@
 # Your runtime complexity should be less than O(n2).
 # There is only one duplicate number in the array, but it could be repeated more than once.
 
+
+# [6, 9, 2, 4]
+
+
 def find_duplicate(nums)
-  sorted = nums.sort
-  i = 0
-  loop do 
-    return sorted[i] if sorted[i] == sorted[i - 1]
-    i += 1
+  nums.each do |num|
+    if nums[num] == num
+      puts "#{num} is already here!"
+    elsif nums[num] == nil
+      nums[num] = num
+    elsif nums[num] != nil
+      arr[arr.length] = num
+      nums[num] = num
+    end
   end
+
+  return nums
 end
+
+
+# def find_duplicate(nums)
+#   sorted = nums.sort
+#   i = 0
+#   loop do 
+#     return sorted[i] if sorted[i] == sorted[i - 1]
+#     i += 1
+#   end
+# end
 
 
 # def find_duplicate(nums)
