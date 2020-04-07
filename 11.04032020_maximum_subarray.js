@@ -47,27 +47,50 @@
 //     return largestSum;
 // };
 
+////////////////////////////////////////////////////////////
+// function maxSubArray(nums) {
+//   var prev = 0;
+//   var max = -Number.MAX_VALUE;
 
-function maxSubArray(nums) {
-  var prev = 0;
-  var max = -Number.MAX_VALUE;
+//   for (var i = 0; i < nums.length; i += 1) {
+//     prev = Math.max(prev + nums[i], nums[i]);
+//     max = Math.max(max, prev);
+//   }
+//   return max;
+// }
 
-  for (var i = 0; i < nums.length; i += 1) {
-    prev = Math.max(prev + nums[i], nums[i]);
-    max = Math.max(max, prev);
-  }
-  return max;
+
+
+
+////////////////////////////////////////////////////////////
+
+var maxSubArray = function(nums) {
+  let output = -2147483648
+  nums.forEach((num, outerIdx) => {
+      let subSums = [];
+      let subArr = nums.slice(outerIdx);
+      for (number of subArr) {
+        subSums.push(number);
+        let subTotal = subSums.reduce((acc, ele) => acc + ele);
+        subSums = [subTotal];
+        if (subSums[0] > output) {
+            output = subSums[0];
+        }
+      }
+  });
+
+  return output;
 }
 
 // console.log(maxSubArray([-1, -1, -1, -1, 25, -1, -1])) //25
 console.log(maxSubArray([-2, 1, -3, 4, -1, 2, 1, -5, 4]) === 6); //[4,-1,2,1]
-// console.log(maxSubArray([1, 2, 3]) ===  6);
-// console.log(maxSubArray([1, -2, 3]) === 3);
-// console.log(maxSubArray([-4, -5, -6]) === -4); 
-// console.log(maxSubArray([1, 2, 5, -1, 5]) === 12);
-// console.log(maxSubArray([9]) === 9);
-// console.log(maxSubArray([0]) === 0 );
-// console.log(maxSubArray([]) )//=== -Infinity);
+console.log(maxSubArray([1, 2, 3]) ===  6);
+console.log(maxSubArray([1, -2, 3]) === 3);
+console.log(maxSubArray([-4, -5, -6]) === -4); 
+console.log(maxSubArray([1, 2, 5, -1, 5]) === 12);
+console.log(maxSubArray([9]) === 9);
+console.log(maxSubArray([0]) === 0 );
+console.log(maxSubArray([]) === -2147483648);
 
 
 
