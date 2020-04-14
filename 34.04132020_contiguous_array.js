@@ -149,50 +149,67 @@
 // }
 
 
+// var findMaxLength = function(nums) {
+//   if (nums.length === 0) {return 0}
+//   let counts = {};
+//   let count = 0;
+//   for (let i = 0; i < nums.length; i += 1) {
+//     nums[i] === 0 ? count -= 1 : count += 1;
+
+//     if (counts[count]) {
+//       counts[count].push(i)
+//     } else {
+//       counts[count] = [i];
+//     }
+//   }
+
+//   let keys = Object.keys(counts);
+//   let lens = keys.map(key => {
+//     let countArr = counts[key];
+//     if (key === '0') {return (Math.max(...countArr)) + 1}
+//     let start = countArr[0];
+//     let finish = countArr[countArr.length - 1];
+//     let seg = nums.slice(start, finish + 1);
+//     return finish - start;
+//   });
+
+//   return Math.max(...lens);
+// }
+
+//////////////////////////////////////////////
+// Other student answer
 var findMaxLength = function(nums) {
-  if (nums.length === 0) {return 0}
-  let counts = {};
+  let counts = {0: -1};
   let count = 0;
+  max = 0;
   for (let i = 0; i < nums.length; i += 1) {
     nums[i] === 0 ? count -= 1 : count += 1;
 
-    if (counts[count]) {
-      counts[count].push(i)
+    if (counts[count] != null) {
+      max = Math.max(max, i - counts[count])
     } else {
-      counts[count] = [i];
+      counts[count] = i;
     }
   }
-
-  let keys = Object.keys(counts);
-  let lens = keys.map(key => {
-    let countArr = counts[key];
-    if (key === '0') {return (Math.max(...countArr)) + 1}
-    // if (countArr.length === 1) {return countArr[0]}
-    // if (countArr.length === 0) {return 0}
-    let start = countArr[0];
-    let finish = countArr[countArr.length - 1];
-    let seg = nums.slice(start, finish + 1);
-    return finish - start;
-  });
-
-  return Math.max(...lens);
-}
+  return max;
+};
 
 
-// console.log(findMaxLength([0, 1]));         // 2
-// console.log(findMaxLength([0, 1, 0]));      // 2
-// console.log(findMaxLength([]));             // 0
-// console.log(findMaxLength([0, 0, 0, 0, 1, 1]));  // 4
-// console.log(findMaxLength([1, 0, 1, 1, 0, 1, 0, 0])); // 8
-// console.log(findMaxLength([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1])); // 18
-// console.log(findMaxLength([0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]));  // 16
-// console.log(findMaxLength([0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1]));  // 18
-// console.log(findMaxLength([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1])); // 18
-// console.log(findMaxLength([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0])); // 16
-// console.log(findMaxLength([0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0]));  // 16
-// console.log(findMaxLength([0,0,1,0,0,0,1,1]));  //  6
-// console.log(findMaxLength([0,1,1,0,1,1,1,0]));   // 4
-// console.log(findMaxLength([0, 0, 1, 0, 0, 0, 1, 1])); // 6
+
+console.log(findMaxLength([0, 1])     ===    2 );
+console.log(findMaxLength([0, 1, 0])  ===    2 );
+console.log(findMaxLength([])         ===    0 );
+console.log(findMaxLength([0, 0, 0, 0, 1, 1])  === 4 );
+console.log(findMaxLength([1, 0, 1, 1, 0, 1, 0, 0]) === 8 );
+console.log(findMaxLength([0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]) === 18  );
+console.log(findMaxLength([0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1]) ===  16 );
+console.log(findMaxLength([0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1]) ===  18 );
+console.log(findMaxLength([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1]) === 18  );
+console.log(findMaxLength([0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 0]) === 16  );
+console.log(findMaxLength([0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 1, 1, 0, 0]) ===  16 );
+console.log(findMaxLength([0,0,1,0,0,0,1,1]) ===   6 );
+console.log(findMaxLength([0,1,1,0,1,1,1,0]) ===   4 );
+console.log(findMaxLength([0, 0, 1, 0, 0, 0, 1, 1]) === 6);
 
 
 
