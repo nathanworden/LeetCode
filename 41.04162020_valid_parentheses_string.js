@@ -44,11 +44,6 @@ var checkValidString = function(s) {
     }
   }
 
-  // console.log(balanceCount);
-  // console.log(leftParen);
-  // console.log(rightParen);
-  // console.log(starCount);
-
   if (leftParen === rightParen) {
     // console.log("same")
     return true;
@@ -74,10 +69,7 @@ var checkValidString = function(s) {
 // console.log(checkValidString("((**")         === true);
 // console.log(checkValidString("())*")         === false);
 // console.log(checkValidString("(((******))") === true);
-console.log(checkValidString("(())((())()()(*)(*()(())())())()()((()())((()))(*") )//=== false);
-
-"((*)(*((*"
-"(("
+// console.log(checkValidString("(())((())()()(*)(*()(())())())()()((()())((()))(*") )//=== false);
 
 
 
