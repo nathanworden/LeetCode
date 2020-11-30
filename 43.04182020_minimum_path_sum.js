@@ -25,7 +25,7 @@
 
 // Algorithm
 // Run all possible paths. Sum each path. Keep the shortest one.
-// 1.  
+// 1. Write a function which, given an array of arrays and a current sum, looks at the element to the right and below it and returns the smaller  
 
 
 var minPathSum = function(grid) {
