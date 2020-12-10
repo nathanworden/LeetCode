@@ -59,3 +59,29 @@ query = [[1,2],
 [3]]
 
  p hashMap(queryType, query)
+
+ queryType = ["addToKey", 
+  "addToKey", 
+  "insert", 
+  "addToValue", 
+  "addToValue", 
+  "get", 
+  "addToKey", 
+  "insert", 
+  "addToKey", 
+  "addToValue"]
+
+  query = 
+  [[-3], 
+   [-1], 
+   [0,-3], 
+   [3], 
+   [-1], 
+   [0], 
+   [-1], 
+   [-4,-5], 
+   [-1], 
+   [-4]]
+
+
+p hashMap(queryType, query)
