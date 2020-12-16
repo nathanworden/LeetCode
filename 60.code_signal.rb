@@ -102,3 +102,4 @@ queryType = ["addToKey",
 
 
 p hashMap(queryType, query)
+# hello
