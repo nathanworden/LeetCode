@@ -9,14 +9,23 @@ data = [
 
 def uncover_questions(data)
     num_cubes = data[0].length / 4
-    rearrange = Array.new(num_cubes, [])
+    rearrange = []
+    num_cubes.times do |_|
+        rearrange << (1..16).to_a
+    end
+
+
     data.each_with_index do |row, row_idx|
+        rotation = 0
+        count = 0
         row.each_with_index do |num, num_idx|
-            p (num_idx + 1) % 4
+            rearrange[rotation].delete(num)
+            count += 1
+            rotation += 1 if count % 4 == 0
         end
     end
 
-    rearrange
+    rearrange.flatten
 end
 
 
