@@ -1,23 +1,7 @@
 def highest_product_of_3(array_of_ints)
-
-  # Calculate the highest product of three numbers.
-  
-
-  0
+  raise error if array_of_ints.length < 3
+  p array_of_ints.combination(3).to_a.map {|arr| arr.reduce(&:*)}.max
 end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
