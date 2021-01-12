@@ -1,14 +1,14 @@
-# def balanced?(tree_root)
-#   if tree_root.left.nil? && tree_root.right.nil?
-#     my_depth = depth(tree_root)
-#   end
-#   # Determine if the tree is superbalanced.
-#   if tree_root
-#     balanced?(tree_root.left)
-#     puts tree_root.value
-#     balanced?(tree_root.right)
-#   end
-# end
+def balanced?(tree_root)
+  if tree_root.left.nil? && tree_root.right.nil?
+    my_depth = depth(tree_root)
+  end
+  # Determine if the tree is superbalanced.
+  if tree_root
+    balanced?(tree_root.left)
+    puts tree_root.value
+    balanced?(tree_root.right)
+  end
+end
 
 # def balanced?(tree_root)
 #   return true unless tree_root
@@ -37,27 +37,27 @@
 
 
 
-def balanced?(tree_root)
-  return true unless tree_root
-  depths = []
-  nodes = []
-  nodes << [tree_root, 0]
-  until nodes.empty?
-    node, depth = nodes.pop
-    if !node.left && !node.right
-      unless depths.include?(depth)
-        depths.push(depth)
-        if depths.length > 2 || depths.length == 2 && (depths[0] - depths[1]).abs > 1
-          return false
-        end
-      end
-    else
-      nodes << [node.left, depth + 1] if node.left
-      nodes << [node.right, depth + 1] if node.right
-    end
-  end
-  true
-end
+# def balanced?(tree_root)
+#   return true unless tree_root
+#   depths = []
+#   nodes = []
+#   nodes << [tree_root, 0]
+#   until nodes.empty?
+#     node, depth = nodes.pop
+#     if !node.left && !node.right
+#       unless depths.include?(depth)
+#         depths.push(depth)
+#         if depths.length > 2 || depths.length == 2 && (depths[0] - depths[1]).abs > 1
+#           return false
+#         end
+#       end
+#     else
+#       nodes << [node.left, depth + 1] if node.left
+#       nodes << [node.right, depth + 1] if node.right
+#     end
+#   end
+#   true
+# end
 
 
 
@@ -75,11 +75,31 @@ end
 
 
 
+# A leaf node is a node with no children
+# Find all the leaf nodes, and compare the depths. Make sure the difference is not greater than 1
 
+# Depth first search is probably better because we want to go straight for the leaf nodes. If we can find two leaf nodes that are greater than 1 depth apart, we can finish early. (Whereas Breadth first search is going to get to the leafs last, so there will be less liklihood of being able to finish early.)
 
-
-
-
+# def balanced?(tree_root)
+#   nodes = []
+#   depths = []
+#   nodes << [tree_root, 0]
+#   until nodes.empty?
+#     current_node, current_depth = nodes.pop
+#     if current_node.left.nil? && current_node.right.nil?
+#       if !depths.include?(current_depth)
+#         depths << current_depth
+#         return false if depths.length > 2
+#         if depths.length > 1
+#           return false if (depths[0] - depths[1]).abs > 1
+#         end
+#       end
+#     end
+#     nodes << [current_node.left, current_depth + 1] if current_node.left
+#     nodes << [current_node.right, current_depth + 1] if current_node.right
+#   end
+#   true
+# end
 
 
 
@@ -108,6 +128,36 @@ class BinaryTreeNode
   end
 end
 
+# Nathan Tests
+# def run_tests
+#   root = BinaryTreeNode.new(50)
+#   left = root.insert_left(40)
+#   right = root.insert_right(60)
+#   left_left = left.insert_left(30)
+#   left_right = left.insert_right(45)
+#   right_left = right.insert_left(55)
+#   right_right = right.insert_right(65)
+#   assert_true(root)
+
+#   root = BinaryTreeNode.new(50)
+#   left = root.insert_left(40)
+#   right = root.insert_right(60)
+#   left_left = left.insert_left(30)
+#   left_left_left = left_left.insert_left(20)
+#   assert_false(root)
+# end
+
+# def assert_true(value)
+#   p balanced?(value) ? "PASS" : "FAIL"
+# end
+
+# def assert_false(value)
+#   p balanced?(value) ? "FAIL" : "PASS"
+# end
+
+# run_tests
+
+# Interview Cake Tests
 def run_tests
   desc = 'full tree'
   tree = BinaryTreeNode.new(5)
