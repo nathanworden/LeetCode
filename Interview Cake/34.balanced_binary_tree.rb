@@ -80,26 +80,26 @@ end
 
 # Depth first search is probably better because we want to go straight for the leaf nodes. If we can find two leaf nodes that are greater than 1 depth apart, we can finish early. (Whereas Breadth first search is going to get to the leafs last, so there will be less liklihood of being able to finish early.)
 
-# def balanced?(tree_root)
-#   nodes = []
-#   depths = []
-#   nodes << [tree_root, 0]
-#   until nodes.empty?
-#     current_node, current_depth = nodes.pop
-#     if current_node.left.nil? && current_node.right.nil?
-#       if !depths.include?(current_depth)
-#         depths << current_depth
-#         return false if depths.length > 2
-#         if depths.length > 1
-#           return false if (depths[0] - depths[1]).abs > 1
-#         end
-#       end
-#     end
-#     nodes << [current_node.left, current_depth + 1] if current_node.left
-#     nodes << [current_node.right, current_depth + 1] if current_node.right
-#   end
-#   true
-# end
+def balanced?(tree_root)
+  nodes = []
+  depths = []
+  nodes << [tree_root, 0]
+  until nodes.empty?
+    current_node, current_depth = nodes.pop
+    if current_node.left.nil? && current_node.right.nil?
+      unless depths.include?(current_depth)
+        depths << current_depth
+        return false if depths.length > 2
+        if depths.length > 1
+          return false if (depths[0] - depths[1]).abs > 1
+        end
+      end
+    end
+    nodes << [current_node.left, current_depth + 1] if current_node.left
+    nodes << [current_node.right, current_depth + 1] if current_node.right
+  end
+  true
+end
 
 
 

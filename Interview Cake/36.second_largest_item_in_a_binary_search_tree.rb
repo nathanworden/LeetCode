@@ -1,18 +1,28 @@
-def find_second_largest(root_node)
+# Nathan answer
+# def find_second_largest(root_node)
+#   raise ArgumentError if root_node.nil?
+#   largest = find_largest(root_node)
+#   if largest.left
+#     find_largest(largest.left).value
+#   else
+#     current = root_node
+#     while current.right.right
+#       current = current.right
+#     end
+#     current.value
+#   end
+# end
+# # 
 
-  # Find the second largest item in the binary search tree.
-  
-
-  nil
-end
-
-
-
-
-
-
-
-
+# def find_largest(root_node)
+#   if !root_node
+#     raise 'Tree must have at least 1 node'
+#   elsif root_node.right
+#     find_largest(root_node.right)
+#   else
+#     root_node
+#   end
+# end
 
 
 
