@@ -25,7 +25,29 @@
 # end
 
 
+# Book answer
+def find_largest(root_node)
+  current = root_node
+  while current
+    return current.value unless current.right
+    current = current.right
+  end
+end
 
+def find_second_largest(root_node)
+  if !root_node || (!root_node.left && !root_node.right)
+    raise 'Tree must have at least 2 nodes'
+  end
+  current = root_node
+  while current
+    if current.left && !current.right
+      return find_largest(current.left)
+    elsif current.right && !current.right.left && !current.right.right
+      return current.value
+    end
+    current = current.right
+  end
+end
 
 
 

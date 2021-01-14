@@ -1,15 +1,29 @@
 require 'set'
 
-def get_permutations(string)
-
-  # Generate all permutations of the input string.
+# def get_permutations(string)
+#   set = string.split('').permutation(string.length).to_a.map! {|arr| arr.join('')}
   
+#   Set.new(set)
+# end
 
-  Set.new
+
+def get_permutations(string)
+  if string.length <= 1
+    return Set.new([string])
+  end
+
+  all_chars_except_last = string[0..-2]
+  last_char = string[-1]
+  permutations_of_all_chars_except_last = get_permutations(all_chars_except_last)
+  permutations = Set.new
+  permutations_of_all_chars_except_last.each do |permutation_of_all_chars_except_last|
+    (0..all_chars_except_last.length).each do |position|
+      permutation = permutation_of_all_chars_except_last[0...position] + last_char + permutation_of_all_chars_except_last[position..-1]
+      permutations.add(permutation)
+    end
+  end
+  permutations
 end
-
-
-
 
 
 
