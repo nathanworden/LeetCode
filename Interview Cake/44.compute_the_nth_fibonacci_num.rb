@@ -1,16 +1,33 @@
+# def fib(n)
+#   hsh = []
+#   if n == 0 || n == 1
+#     n
+#   elsif n < 0
+#     raise ArgumentError
+#   elsif hsh[n]
+#     hsh[n]
+#   else
+#     result = fib(n - 1) + fib(n - 2)
+#     hsh[n] = result
+#     result
+#   end
+# end
+
+
+
 def fib(n)
-
-  # Compute the nth Fibonacci number.
-  
-
-  -1
+  return n if n == 1 || n == 0
+  raise ArgumentError if n < 0
+  latest = 1
+  prior = 0
+  (n - 1).times do |_|
+    prior, latest = latest, latest + prior
+    # temp = latest
+    # latest = prior + latest
+    # prior = temp
+  end
+  latest
 end
-
-
-
-
-
-
 
 
 
@@ -54,6 +71,11 @@ def run_tests
   desc = 'tenth fibonacci'
   actual = fib(10)
   expected = 55
+  assert_equal(actual, expected, desc)
+
+  desc = 'tenth fibonacci'
+  actual = fib(50)
+  expected = 12586269025
   assert_equal(actual, expected, desc)
 
   desc = 'negative fibonacci'
